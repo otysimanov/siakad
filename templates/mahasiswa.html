@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% set title = 'Daftar Mahasiswa' %}
+{% set page_active = 'daftar_mahasiswa' %}
+{% block _content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <a href="{{ url_for('mahasiswa.tambah_mahasiswa') }}" class="btn btn-primary">Tambah Mahasiswa</a>
+            <table class="table mt-2">
+                <tr>
+                    <th>Foto</th>
+                    <th>Nama Lengkap</th>
+                    <th>Jurusan</th>
+                    <th>Email</th>
+                    <th>Umur</th>
+                    <th>status</th>
+                </tr>
+                {% for mhs in mahasiswa %}
+                <tr>
+                    <td><img src="{{ mhs.photoURL or '/gambar/default.jpg' }}" alt="foto" class="img-fluid" width="100px"></td>
+                    <td>{{ mhs['nama_lengkap'] }}</td>
+                    <td>{{ mhs['jurusan'] }}</td>
+                    <td>{{ mhs.email }}</td>
+                    <td>{{ mhs.umur or '-' }}</td>
+                    <td>
+                        {% if mhs.status == 'lulus' %}
+                        <spx
+                        {% else %}
+                        <span class="badge badge-danger">Tidak Lulus</span>
+                        {% endif %}
+
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

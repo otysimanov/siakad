@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% set title = 'Tambah Mahasiswa' %}
+{% set page_active = 'daftar_mahasiswa' %}
+{% block _content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <form action="" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="nama_lengkap">Nama Lengkap</label>
+                    <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap">
+                    
+                </div>
+                <div class="form-group">
+                    <label for="jurusan">Jurusan</label>
+                    <input type="text" class="form-control" id="jurusan" name="jurusan">
+                    
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" name="email">
+                    
+                </div>
+                <div class="form-group">
+                    <label for="umur">Umur</label>
+                    <input type="umur" class="form-control" id="umur" name="umur">
+                    
+                </div>                
+                <div class="form-group">
+                    <label for="ktp">Foto KTP</label>
+                    <input type="file" class="form-control" id="ktp" name="ktp">
+                    
+                </div>                
+                <div class="form-group">
+                    <label for="ktm">Foto KTM</label>
+                    <input type="file" class="form-control" id="ktm" name="ktm">
+                    
+                </div>                
+                <div class="form-group">
+                    <label for="pas_foto">PAS FOTO</label>
+                    <input type="file" class="form-control" id="pas_foto" name="pas_foto">
+                    
+                </div>                
+                <button type="submit" class="btn btn-primary">Tambah Mahasiswa</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

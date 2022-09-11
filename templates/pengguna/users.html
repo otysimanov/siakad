@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% set title = 'Users' %}
+{% set page_active = 'users' %}
+{% block _content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <a href="{{ url_for('usersapp.tambah_users') }}" class="btn btn-primary">Tambah Users</a>
+            <table class="table mt-3">
+                <tr>
+                    <th>Username</th>
+                    <th>Nama Lengkap</th>
+                    <th>Action</th>
+                </tr>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.nama_lengkap }}</td>
+                    <td>
+                        <button id="hapus" onclick="hapusUsers('{{ user.id }}')" class="btn btn-danger btn-sm">Hapus</button>
+                        <a href="{{ url_for('usersapp.edit_users',uid=user.id) }}" class="btn btn-secondary btn-sm">Edit</a>
+                        <a href="{{ url_for('usersapp.lihat_users',uid=user.id) }}" class="btn btn-success btn-sm">Lihat</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block _script %}
+<script>
+    function hapusUsers(id) {
+        var hapus = confirm('Apakah Anda Yakin Untuk Hapus ?')
+        if (hapus) {
+            $.ajax({
+                type: "POST",
+                url: "{{ url_for('usersapp.hapus_users') }}",
+                data: {'uid': id},
+                success: function(){
+                    location.reload()
+                    console.log('Berhasil Hapus Users')
+                },
+            });
+        }
+        
+    }
+</script>
+{% endblock %}
